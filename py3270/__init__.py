@@ -433,6 +433,9 @@ class Emulator(object):
     def send_pf8(self):
         self.exec_command(b"PF(8)")
 
+    def send_pf12(self):
+        self.exec_command(b'PF(12)')
+
     def send_pf(self, value):
         pf = "PF({})".format(value)
         self.exec_command(bytes(pf.encode("utf-8")))
@@ -497,3 +500,8 @@ class Emulator(object):
     def save_screen(self, file_path):
         self.exec_command("PrintText(html,file,{0})".format(file_path).encode("ascii"))
 
+    def save_screen_text(self, file_path):
+        self.exec_command('PrintText(file,{0})'.format(file_path).encode('ascii'))
+
+    def save_screen_text_replace(self, file_path):
+        self.exec_command('PrintText(replace,file,{0})'.format(file_path).encode('ascii'))
